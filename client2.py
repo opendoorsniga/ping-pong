@@ -41,11 +41,7 @@ def receive():
 font_win = font.Font(None, 72)
 font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
-ball_png = image.load("ballni.png")
-ball_png = transform.scale(ball_img, (20, 20))
 
-background1 = image.load("Flag_of_Donetsk_Oblast.png")
-background1 = transform.scale(background1, (WIDTH, HEIGHT))
 # --- ЗВУКИ ---
 
 # --- ГРА ---
@@ -92,16 +88,13 @@ while True:
         continue  # Блокує гру після перемоги
 
     if game_state:
-        # screen.fill((30, 30, 30))
-        screen.blit(background1,(0,0))
+        screen.fill((30, 30, 30))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
-        # draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
+        draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
         score_text = font_main.render(f"{game_state['scores'][0]} : {game_state['scores'][1]}", True, (255, 255, 255))
         screen.blit(score_text, (WIDTH // 2 -25, 20))
 
-        screen.blit(ball_png, (game_state['ball']['x'], game_state['ball']['y']))
-        # draw.rect(screen, (0, 255, 0), (20, game_state['paddles']))
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
